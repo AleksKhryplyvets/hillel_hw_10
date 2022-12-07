@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hw-10</title>
+  </head>
+  <body>
+    <script>
+      const toDoList = {
+        list: [
+          { name: "Shop", status: true, text: "Buy milk" },
+          { name: "Shop", status: false, text: "Buy bread" },
+          { name: "Shop", status: true, text: "Buy bread" },
+        ],
+        pushList,
+        delList,
+        getSummery,
+      };
+
+      // добавлять новые задачи и проверять их уникальность (по названию). Если такая задача есть, то не добавляем. У каждой задачи есть состояние - выполнена или нет, название и текст.
+
+      function pushList(name, text, status) {
+        status = false;
+        const result = this.list.findIndex(function (element) {
+          return element.name === name;
+        });
+        if (result === -1) {
+          this.list.push({ name, text, status });
+        }
+      }
+
+      // удалять задачу
+
+      function delList(index) {
+        return this.splice(index);
+      }
+
+      // редактировать задачу * (опционально)
+
+      // выводить общее количество задач, сколько выполнили и сколько осталось(тут нужно выводить объект с соответствующими полями)
+
+      function getSummery() {
+        const newObj = this.list.reduce(function (obj, item, index) {
+          obj.complite = 0;
+          obj.left = 0;
+          obj.total = 0;
+          if (item["status"] === true) {
+            obj.complite++;
+          } else if (item["status"] === false) {
+            obj.left++;
+          }
+          obj.total++;
+          console.log(obj);
+          return obj;
+        }, {});
+        return newObj;
+      }
+
+      toDoList.getSummery();
+    </script>
+  </body>
+</html>
