@@ -41,21 +41,20 @@
 
       // выводить общее количество задач, сколько выполнили и сколько осталось(тут нужно выводить объект с соответствующими полями)
 
-      function getSummery() {
-        const newObj = this.list.reduce(function (obj, item, index) {
-          obj.complite = 0;
-          obj.left = 0;
-          obj.total = 0;
-          if (item["status"] === true) {
-            obj.complite++;
-          } else if (item["status"] === false) {
-            obj.left++;
+       function getSummery() {
+        const resultObj = {};
+        resultObj.complite = 0;
+        resultObj.left = 0;
+        resultObj.total = 0;
+        this.list.forEach((element) => {
+          if (element["status"] === true) {
+            resultObj.complite++;
+          } else if (element["status"] === false) {
+            resultObj.left++;
           }
-          obj.total++;
-          console.log(obj);
-          return obj;
-        }, {});
-        return newObj;
+          resultObj.total++;
+        });
+        return resultObj;
       }
 
       toDoList.getSummery();
